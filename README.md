@@ -38,5 +38,6 @@ npx hardhat compile
 ## fix
 * tell-me-a-joke-oao/lib/web3.[ts]js (needs to be updated with the contract address)
 * to deploy to Sepolia see: [DEPLOYTOSEPOLIA.md](./DEPLOYTOSEPOLIA.md)
+* write tests
 
 (vibe coded with Grok 3, to be taken as outline until working)
