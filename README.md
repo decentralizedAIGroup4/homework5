@@ -29,7 +29,7 @@ npx hardhat compile
 
 - inside of tell-me-a-joke-oao directory: npm run dev
 
-- simulate opml node with event listener outside of tell-me-a-joke-oao directory: node scripts/opml.js (normally remote API, https://docs.ora.io/doc/resilient-model-services-rms/ora-api, but using hardhat) 
+- simulate opml node with event listener outside of tell-me-a-joke-oao directory: node scripts/opml.js (normally remote API, https://docs.ora.io/doc/resilient-model-services-rms/ora-api, but using hardhat for emulation of local chain) 
 
 
 ## fix
