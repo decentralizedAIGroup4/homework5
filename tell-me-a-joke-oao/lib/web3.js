@@ -1,5 +1,9 @@
 import { ethers } from "ethers";
 
+// use this address for the publicly avialable contract for Prompt.sol instead of your deployment
+// comment out if not needed
+const contractAddress = '0xe75af5294f4CB4a8423ef8260595a54298c7a2FB';
+
 export function getProvider() {
   return new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545");
 }
