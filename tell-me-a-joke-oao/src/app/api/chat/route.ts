@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       ],
     });
 
-    const output = chatCompletion.choices[0].message.content;
+    const output = chatCompletion.choices[0].message.content || ""; // Default to empty string if null
     const outputBytes = ethers.toUtf8Bytes(output);
 
     // Submit the result back to the Prompt contract
