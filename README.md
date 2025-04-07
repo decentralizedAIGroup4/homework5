@@ -21,8 +21,8 @@ inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --netw
 
 
 ## fix
-tell-me-a-joke-oao/page.ts
-tell-me-a-joke-oao/scripts.deploy.js (needs to be completely refactored)
-tell-me-a-joke-oao/lib/web3.js (needs to be updated with the contract address)
+* tell-me-a-joke-oao/page.ts
+* tell-me-a-joke-oao/scripts.deploy.js (needs to be completely refactored)
+* tell-me-a-joke-oao/lib/web3.js (needs to be updated with the contract address)
 
 (vibe coded with Grok 3, to be taken as outline until working)
