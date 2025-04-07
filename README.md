@@ -16,16 +16,18 @@ To consolidate this week's learning, complete the following project:
 npx hardhat compile
 
 ## run on local in tell-me-a-joke-oao
+- outside of tell-me-a-joke-oao directory: npx hardhat compile
+
 - outside of tell-me-a-joke-oao directory: npx hardhat node
 
-- inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network localhost
-    --- OR -----
-- inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network sepolia 
+- outside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network localhost
+
+- inside of tell-me-a-joke-oao directory: npm run dev
+
+- simulate opml node with event listener outside of tell-me-a-joke-oao directory: node scripts/opml.js 
 
 
 ## fix
-* tell-me-a-joke-oao/page.ts
-* tell-me-a-joke-oao/scripts.deploy.js (needs to be completely refactored)
-* tell-me-a-joke-oao/lib/web3.js (needs to be updated with the contract address)
+* tell-me-a-joke-oao/lib/web3.[ts]js (needs to be updated with the contract address)
 
 (vibe coded with Grok 3, to be taken as outline until working)
