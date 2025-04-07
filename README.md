@@ -16,11 +16,16 @@ To consolidate this week's learning, complete the following project:
 npx hardhat compile
 
 ## run on local in tell-me-a-joke-oao
+- outside of tell-me-a-joke-oao directory: cp hardhat.config.ts.templace hardhat.config.ts
+  const SEPOLIA_PRIVATE_KEY = "your-32byte-private-key-as-hex-string-without-0x-prefix-here";
 - outside of tell-me-a-joke-oao directory: npx hardhat compile
 
 - outside of tell-me-a-joke-oao directory: npx hardhat node
 
 - outside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network localhost
+
+- inside of tell-me-a-joke-oao directory: cp .env.local .env
+  replace .env with ora api key in ORA_API_KEY=your-ora-api-key-here
 
 - inside of tell-me-a-joke-oao directory: npm run dev
 
