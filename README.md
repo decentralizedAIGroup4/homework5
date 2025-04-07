@@ -13,11 +13,11 @@ Implement a smart contract to handle payments (or any other relevant asset for y
 npx hardhat compile
 
 ## run on local in tell-me-a-joke-oao
-outside of tell-me-a-joke-oao directory: npx hardhat node
+- outside of tell-me-a-joke-oao directory: npx hardhat node
 
-inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network localhost
+- inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network localhost
     --- OR -----
-inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network sepolia 
+- inside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network sepolia 
 
 
 ## fix
