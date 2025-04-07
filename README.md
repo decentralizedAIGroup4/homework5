@@ -32,6 +32,8 @@ npx hardhat compile
 
 - simulate opml node with event listener outside of tell-me-a-joke-oao directory: node scripts/opml.js (normally remote API, https://docs.ora.io/doc/resilient-model-services-rms/ora-api, but using hardhat for emulation of local chain) 
 
+## demo video walking through repo:
+[demo homework 5](https://youtu.be/HD-VxgXuPyY)
 
 ## fix
 * tell-me-a-joke-oao/lib/web3.[ts]js (needs to be updated with the contract address)
