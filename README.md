@@ -26,7 +26,7 @@ npx hardhat compile
   (for remote npx hardhat run scripts/deploy.js --network sepolia)
 
 - inside of tell-me-a-joke-oao directory: cp .env.local .env
-  replace .env with ora api key in ORA_API_KEY=your-ora-api-key-here
+  replace .env with ora api key in ORA_API_KEY=your-ora-api-key-here (see [ora-rms](https://rms.ora.io/) to try to obstain)
 
 - inside of tell-me-a-joke-oao directory: npm run dev
 
