@@ -22,3 +22,18 @@ export function getPromptContract(providerOrSigner, contractAddress) {
 }
 
 // this needs to be updated with the appropriate deployed contract Addresses
+
+
+/*
+export function getProvider() {
+  return new ethers.BrowserProvider(window.ethereum);
+}
+
+export async function getSigner(provider: ethers.BrowserProvider) {
+  return await provider.getSigner();
+}
+
+export function getPromptContract(signer: ethers.Signer, address: string) {
+  return new ethers.Contract(address, PromptABI.abi, signer);
+}
+*/

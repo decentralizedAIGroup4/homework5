@@ -9,14 +9,14 @@ import { getProvider, getSigner, getPromptContract } from "../../lib/web3";
 import type { JokeSettings } from "@/types/settings";
 import { defaultSettings } from "@/types/settings";
 
-const PROMPT_CONTRACT_ADDRESS = "0xYourPromptContractAddress"; // Replace with actual deployed address
+const PROMPT_CONTRACT_ADDRESS = "0xYourPromptContractAddress"; // Replace with deployed address from Hardhat
 
 export default function Home() {
   const [settings, setSettings] = useState<JokeSettings>(defaultSettings);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [promptText, setPromptText] = useState("");
-  const [modelId, setModelId] = useState(1);
+  const [modelId, setModelId] = useState(1); // Default model ID
   const [fee, setFee] = useState<string | null>(null);
   const [jokeResult, setJokeResult] = useState("");
   const [requestLoading, setRequestLoading] = useState(false);
@@ -35,6 +35,7 @@ export default function Home() {
       if (!savedSettings) {
         console.log("No saved settings found, using defaults");
         setSettings(defaultSettings);
+        setPromptText(`Tell me a ${defaultSettings.jokeType} joke about ${defaultSettings.topic} in a ${defaultSettings.tone} tone`);
         setIsLoading(false);
         return;
       }
@@ -59,7 +60,7 @@ export default function Home() {
   async function estimateFee() {
     try {
       const estimatedFee = await promptContract.estimateFee(modelId);
-      setFee(ethers.formatEther(estimatedFee)); // Updated from ethers.utils.formatEther
+      setFee(ethers.formatEther(estimatedFee));
     } catch (error) {
       console.error("Error estimating fee:", error);
       setError("Failed to estimate fee");
@@ -70,28 +71,35 @@ export default function Home() {
   async function requestAIResult() {
     setRequestLoading(true);
     setError(null);
+    setJokeResult(""); // Clear previous result
+
     try {
       const feeWei = await promptContract.estimateFee(modelId);
       const tx = await promptContract.calculateAIResult(modelId, promptText, {
         value: feeWei,
       });
       const receipt = await tx.wait();
-      const requestId = receipt.events[0].args.requestId.toString();
-      console.log(`Request sent! Request ID: ${requestId}`);
+      const requestId = receipt.events?.find((e) => e.event === "promptRequest")?.args?.requestId;
+      if (!requestId) throw new Error("Request ID not found in transaction receipt");
+      console.log(`Request sent! Request ID: ${requestId.toString()}`);
 
-      // Poll for result (simulating callback for Hardhat local testing)
+      // Poll for result (simulating opML callback in local testing)
+      const maxAttempts = 30; // ~1 minute with 2-second intervals
+      let attempts = 0;
       const checkResult = setInterval(async () => {
-        const result = await promptContract.prompts(modelId, promptText);
-        if (result !== "") {
-          setJokeResult(result);
+        attempts++;
+        const result = await promptContract.getAIResult(modelId, promptText);
+        if (result !== "" || attempts >= maxAttempts) {
+          setJokeResult(result || "No result received from opML node");
           clearInterval(checkResult);
         }
-      }, 2000); // Check every 2 seconds
+      }, 2000);
     } catch (error) {
       console.error("Error requesting AI result:", error);
       setError("Failed to request AI result");
+    } finally {
+      setRequestLoading(false);
     }
-    setRequestLoading(false);
   }
 
   return (
