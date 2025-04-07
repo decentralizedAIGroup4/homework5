@@ -16,7 +16,7 @@ To consolidate this week's learning, complete the following project:
 npx hardhat compile
 
 ## run on local in tell-me-a-joke-oao
-- outside of tell-me-a-joke-oao directory: cp hardhat.config.ts.templace hardhat.config.ts
+- outside of tell-me-a-joke-oao directory: cp hardhat.config.ts.local hardhat.config.ts
   const SEPOLIA_PRIVATE_KEY = "your-32byte-private-key-as-hex-string-without-0x-prefix-here";
 - outside of tell-me-a-joke-oao directory: npx hardhat compile
 
