@@ -10,7 +10,7 @@ To consolidate this week's learning, complete the following project:
 - Setup Metamask Flask
 [metamask flask](https://docs.metamask.io/snaps/get-started/install-flask/)
 - In metamask flask select show rest networks, and select Sepolia
-- use a faucet to sent Sepolia ETH to address accessibke in Flask Wallet. may need to import wallet with private key listed in tell-me-a-joke-oaa hardhat.config.ts .
+- use a faucet (e.g https://sepolia-faucet.pk910.de/)  to sent Sepolia ETH to address accessibke in Flask Wallet. may need to import wallet with private key listed in tell-me-a-joke-oaa hardhat.config.ts .
 
 # To Compile Contracts in directory:
 npx hardhat compile
@@ -23,6 +23,7 @@ npx hardhat compile
 - outside of tell-me-a-joke-oao directory: npx hardhat node
 
 - outside of tell-me-a-joke-oao directory: npx hardhat run scripts/deploy.js --network localhost
+  (for remote npx hardhat run scripts/deploy.js --network sepolia)
 
 - inside of tell-me-a-joke-oao directory: cp .env.local .env
   replace .env with ora api key in ORA_API_KEY=your-ora-api-key-here
