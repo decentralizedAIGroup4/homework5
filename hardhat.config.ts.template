@@ -1,0 +1,22 @@
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox";
+
+const SEPOLIA_PRIVATE_KEY = "";
+
+module.exports = {
+  solidity: "0.8.28", // Match OAO's version
+  settings: {
+    optimizer: {
+      enabled: true,
+      runs: 200, // Adjust as needed
+    },
+    viaIR: true, // Enable Yul IR
+  },
+  networks: {
+    hardhat: {}, // Local testing
+    sepolia: {   // Example testnet
+      url: "https://rpc.sepolia.org", // Or use an Infura/Alchemy URL
+      accounts: [`0x${SEPOLIA_PRIVATE_KEY}`] // Replace with your wallet's private key
+    }
+  }
+};
