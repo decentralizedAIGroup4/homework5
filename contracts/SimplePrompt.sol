@@ -6,12 +6,10 @@ import "./interfaces/IAIOracle.sol";
 import "./AIOracleCallbackReceiver.sol";
 
 // this contract is for ai.ora.io website
-contract Prompt is AIOracleCallbackReceiver {
+contract SimplePrompt is AIOracleCallbackReceiver {
 
     event promptsUpdated(
         uint256 requestId,
-        uint256 modelId,
-        string input,
         string output,
         bytes callbackData
     );
@@ -30,7 +28,7 @@ contract Prompt is AIOracleCallbackReceiver {
         bytes output;
     }
 
-    address owner;
+    address immutable owner;
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner");
@@ -52,21 +50,9 @@ contract Prompt is AIOracleCallbackReceiver {
         callbackGasLimit[modelId] = gasLimit;
     }
 
-    // uint256: modelID => (string: prompt => string: output)
-    mapping(uint256 => mapping(string => string)) public prompts;
-
-    function getAIResult(uint256 modelId, string calldata prompt) external view returns (string memory) {
-        return prompts[modelId][prompt];
-    }
-
     // the callback function, only the AI Oracle can call this function
     function aiOracleCallback(uint256 requestId, bytes calldata output, bytes calldata callbackData) external override onlyAIOracleCallback() {
-        // since we do not set the callbackData in this example, the callbackData should be empty
-        AIOracleRequest storage request = requests[requestId];
-        require(request.sender != address(0), "request not exists");
-        request.output = output;
-        prompts[request.modelId][string(request.input)] = string(output);
-        emit promptsUpdated(requestId, request.modelId, string(request.input), string(output), callbackData);
+        emit promptsUpdated(requestId, string(output), callbackData);
     }
 
     function estimateFee(uint256 modelId) public view returns (uint256) {
@@ -79,10 +65,6 @@ contract Prompt is AIOracleCallbackReceiver {
         uint256 requestId = aiOracle.requestCallback{value: msg.value}(
             modelId, input, address(this), callbackGasLimit[modelId], ""
         );
-        AIOracleRequest storage request = requests[requestId];
-        request.input = input;
-        request.sender = msg.sender;
-        request.modelId = modelId;
         emit promptRequest(requestId, msg.sender, modelId, prompt);
     }
 }
